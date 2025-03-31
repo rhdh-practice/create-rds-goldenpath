@@ -2,14 +2,14 @@ locals {
   aws_region = "${{ values.aws_region }}"
 
   rds = {
-    name                = "${{ values.db_name }}"
+    name                = "${{ values.rds_name }}"
     allocated_storage   = ${{ values.allocated_storage }}
     storage_type        = "${{ values.storage_type }}"
     engine              = "${{ values.engine }}"
     engine_version      = "${{ values.engine_version }}"
     instance_class      = "${{ values.instance_class }}"
-    username            = "${{ values.username }}"
-    password            = "${{ values.password }}"
+    username            = "${{ secrets.username }}"
+    password            = "${{ secrets.password }}"
     skip_final_snapshot = true
 
     tags = {
