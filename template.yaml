@@ -99,7 +99,7 @@ spec:
           type: string
           description: 作成するデータベースの初期ユーザー名を指定してください。
           default: databaseuser
-        username:
+        password:
           title: 初期ユーザーのパスワード
           type: string
           description: 初期ユーザーのパスワードを指定してください。
