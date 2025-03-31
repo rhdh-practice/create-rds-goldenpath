@@ -99,11 +99,12 @@ spec:
           title: データベースの初期ユーザー名
           type: string
           description: 作成するデータベースの初期ユーザー名を指定してください。
-          default: databaseuser
+          ui:field: Secret
         password:
           title: 初期ユーザーのパスワード
           type: string
           description: 初期ユーザーのパスワードを指定してください。
+          ui:field: Secret
         engine:
           title: データベースエンジン
           type: string
