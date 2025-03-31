@@ -6,7 +6,7 @@ resource "aws_db_instance" "${{ values.rds_name }}" {
   engine              = local.rds.engine
   engine_version      = local.rds.engine_version
   instance_class      = local.rds.instance_class
-  name                = local.rds.name
+  db_name             = local.rds.db_name
   username            = local.rds.username
   password            = local.rds.password
   skip_final_snapshot = local.rds.skip_final_snapshot

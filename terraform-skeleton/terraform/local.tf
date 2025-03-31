@@ -2,7 +2,7 @@ locals {
   aws_region = "${{ values.aws_region }}"
 
   rds = {
-    name                = "${{ values.rds_name }}"
+    db_name             = "${{ values.rds_name }}"
     allocated_storage   = ${{ values.allocated_storage }}
     storage_type        = "${{ values.storage_type }}"
     engine              = "${{ values.engine }}"
