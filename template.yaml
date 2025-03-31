@@ -90,7 +90,7 @@ spec:
             - m5.2xlarge
         storage_type:
           title: ストレージタイプ
-          type: object
+          type: string
           description: ストレージタイプの情報を指定してください。
           enum:
             - gp3
