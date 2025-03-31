@@ -205,7 +205,7 @@ spec:
       properties:
         git_repo_name:
           title: GitHubリポジトリ名
-          "description: 生成するGitHubリポジトリ名を入力してください。
+          description: 生成するGitHubリポジトリ名を入力してください。
           type: string
           default: rds-sample
         git_host_url:
