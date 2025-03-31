@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.rds_name }}
+  description: "AWSのRDSリソース情報です。データベースの情報を管理します。"
+  labels:
+    resource: rds
+  links:
+    - url: https://${{ values.git_host_url }}/${{ values.git_owner_name }}/${{ values.git_repo_name }} 
+      title: Terraform Repository
+      icon: github
+  annotations:
+    backstage.io/techdocs-ref: url:https://${{ values.git_host_url }}/${{ values.git_owner_name }}/${{ values.git_repo_name }}
+    github.com/project-slug: ${{ values.git_owner_name }}/${{ values.git_repo_name }}
+spec:
+  type: resource
+  owner: ${{ values.owner }}
+  lifecycle: production
+  parameters:
+    provider: aws
+    region: ${{ values.aws_region }}
+    vpc: ${{ values.vpc_name }}
+    allocated_storage: ${{ values.allocated_storage }}
+    storage_type: ${{ values.storage_type }}
+    engine: ${{ values.engine }}
+    engine_version: ${{ values.engine_version }}
+    instance_class: ${{ values.instance_class }}
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: ${{ values.vpc_name }}
+  description: "AWSのRDSリソース情報です。データベースの情報を管理します。"
+  tags:
+    - aws
+    - rds
+spec:
+  type: rds
+  owner: ${{ values.owner }}
+  parameters:
+    provider: aws
+    region: ${{ values.aws_region }}
+    vpc: ${{ values.vpc_name }}
+    allocated_storage: ${{ values.allocated_storage }}
+    storage_type: ${{ values.storage_type }}
+    engine: ${{ values.engine }}
+    engine_version: ${{ values.engine_version }}
+    instance_class: ${{ values.instance_class }}

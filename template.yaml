@@ -1,0 +1,267 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: create-rds-template
+  title: Create a RDS
+  description: RDSを作成するテンプレート 
+  tags:
+    - recommended
+    - terraform
+spec:
+  owner: user:default/skitamura7446
+  type: service
+
+  parameters:
+    - title: 作成するComponentの情報 
+      requiored:
+        - rds_name
+        - owner
+      properties:
+        vpc_name:
+          title: RDS名
+          description: 作成するRDS名を指定してください。
+          type: string
+          default: "rds-sample"
+        owner:
+          title: オーナー
+          type: string
+          description: 作成するComponentのオーナーを選択してください。
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind:
+                - Group
+                - User
+
+    - title: RDSの情報 
+      required:
+        - vpc_name
+        - aws_region
+        - allocated_storage
+        - instance_class
+        - storage_type
+        - username
+        - password
+        - engine
+        - engine_version
+      properties:
+        vpc_name:
+          title: VPC名
+          type: string
+          description: 作成するRDSのVPCを選択してください。
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              - kind: resource
+                spec.type: vpc
+        aws_region:
+          title: AWSリージョン
+          type: string
+          description: 作成するRDSのリージョンを選択してください。
+          default: "ap-northeast-1"
+          enum:
+            - ap-northeast-1
+            - us-east-1
+          enumNames:
+            - ap-northeast-1
+            - us-east-1
+        allocated_storage:
+          title: ストレージのサイズ(GB)
+          type: number
+          description: 作成するRDSのストレージのサイズ(GB)を指定してください。
+          default: 20
+        instance_class:
+          title: ストレージクラス
+          type: string
+          description: 作成するRDSのストレージクラスを指定してください。
+          default: t3.small
+          enum:
+            - t4g.small
+            - t4g.medium
+            - t4g.large
+            - t3.small
+            - t3.medium
+            - t3.large
+            - m6g.large
+            - m6g.xlarge
+            - m6g.2xlarge
+            - m5.large
+            - m5.xlarge
+            - m5.2xlarge
+        storage_type:
+          title: ストレージタイプ
+          type: object
+          description: ストレージタイプの情報を指定してください。
+          enum:
+            - gp3
+        username:
+          title: データベースの初期ユーザー名
+          type: string
+          description: 作成するデータベースの初期ユーザー名を指定してください。
+          default: databaseuser
+        username:
+          title: 初期ユーザーのパスワード
+          type: string
+          description: 初期ユーザーのパスワードを指定してください。
+        engine:
+          title: データベースエンジン
+          type: string
+          description: データベースエンジンを指定してください。
+          enum:
+            - mysql
+            - postgres
+          enumNames:
+            - MySQL
+            - PostgreSQL
+      dependencies:
+        engine:
+          oneOf:
+            - properties:
+                engine:
+                  enum:
+                    - mysql
+                engine_version:
+                  title: MySQLのバージョン
+                  type: string
+                  default: 17.4
+                  description: MySQLのバージョンを指定してください。
+                  enum:
+                    - 11.22
+                    - 11.22-rds.20240418
+                    - 11.22-rds.20240509
+                    - 11.22-rds.20240808
+                    - 11.22-rds.20241121
+                    - 12.15
+                    - 12.16
+                    - 12.17
+                    - 12.18
+                    - 12.19
+                    - 12.20
+                    - 12.21
+                    - 12.22
+                    - 13.15
+                    - 13.16
+                    - 13.17
+                    - 13.18
+                    - 13.19
+                    - 13.20
+                    - 14.12
+                    - 14.13
+                    - 14.14
+                    - 14.15
+                    - 14.16
+                    - 14.17
+                    - 15.7
+                    - 15.8
+                    - 15.9
+                    - 15.10
+                    - 15.11
+                    - 15.12
+                    - 16.3
+                    - 16.4
+                    - 16.5
+                    - 16.6
+                    - 16.7
+                    - 16.8
+                    - 17.1
+                    - 17.2
+                    - 17.3
+                    - 17.4
+            - properties:
+                engine:
+                  enum:
+                    - postgres
+                engine_version:
+                  title: PostgreSQLのバージョン
+                  type: string
+                  default: 8.4.4
+                  description: PostgreSQLのバージョンを指定してください。
+                  enum:
+                    - 5.7.44
+                    - 5.7.44-rds.20240408
+                    - 5.7.44-rds.20240529
+                    - 5.7.44-rds.20240808
+                    - 5.7.44-rds.20250103
+                    - 5.7.44-rds.20250213
+                    - 8.0.32
+                    - 8.0.33
+                    - 8.0.34
+                    - 8.0.35
+                    - 8.0.36
+                    - 8.0.37
+                    - 8.0.39
+                    - 8.0.40
+                    - 8.0.41
+                    - 8.4.3
+                    - 8.4.4
+
+    - title: GitHubリポジトリの情報
+      required:
+        - git_repo_name
+        - git_host_url
+        - git_owner_name
+      properties:
+        git_repo_name:
+          title: GitHubリポジトリ名
+          description: 生成するGitHubリポジトリ名を入力してください。
+          type: string
+          default: rds-sample
+        git_host_url:
+          title: GitHub URL
+          description: GitHubリポジトリのURLを入力してください。
+          type: string
+          default: github.com
+        git_owner_name:
+          title: GitHub Organization名
+          description: GitHubリポジトリを生成するGitHub Organization名を入力してください。
+          type: string
+          default: rhdh-practice
+
+  steps:
+    - id: terraform-template
+      name: Fetch Terraform skeleton 
+      action: fetch:template
+      input:
+        url: ./terraform-skeleton
+        values:
+          owner: ${{ parameters.owner }}
+          git_repo_name: ${{ parameters.git_repo_name }}
+          git_host_url: ${{ parameters.git_host_url }}
+          git_owner_name: ${{ parameters.git_owner_name }}
+          vpc_name: ${{ parameters.vpc_name }}
+          aws_region: ${{ parameters.aws_region }}
+          rds_name: ${{ parameters.rds_name }}
+          allocated_storage: ${{ parameters.allocated_storage }} 
+          instance_class: ${{ parameters.instance_class }}
+          storage_type: ${{ parameters.storage_type }}
+          username: ${{ parameters.username }}
+          password: ${{ parameters.password }}
+          engine: ${{ parameters.engine }}
+          engine_version: ${{ parameters.engine_version }}
+        targetPath: ./tenant
+
+    - id: publish-terraform
+      name: Push Terraform Repo to GitHub
+      action: publish:github
+      input:
+        repoUrl: ${{ parameters.git_host_url }}?owner=${{ parameters.git_owner_name }}&repo=${{ parameters.git_repo_name }}
+        repoVisibility: public
+        sourcePath: ./tenant
+        defaultBranch: develop
+        protectDefaultBranch: false
+
+    - id: register
+      name: Register Catalog into Developer Hub
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish-terraform'].output.repoContentsUrl }}
+        catalogInfoPath: "/catalog-info.yaml"
+
+  output:
+    links:
+      - title: Componentを開く
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
+      - title: Gitリポジトリを開く
+        url: ${{ steps['publish-terraform'].output.remoteUrl }}
+        icon: github
