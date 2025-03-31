@@ -54,10 +54,6 @@ spec:
             catalogFilter:
               - kind: resource
                 spec.type: vpc
-            allowedKinds:
-            - Resource
-            defaultKind: Resource
-            defaultNamespace: default
         aws_region:
           title: AWSリージョン
           type: string
@@ -233,7 +229,7 @@ spec:
           git_repo_name: ${{ parameters.git_repo_name }}
           git_host_url: ${{ parameters.git_host_url }}
           git_owner_name: ${{ parameters.git_owner_name }}
-          vpc_name: ${{ parameters.vpc_name }}
+          vpc_name: ${{ parameters.vpc_name | parseEntityRef | pick('name') }}"
           aws_region: ${{ parameters.aws_region }}
           rds_name: ${{ parameters.rds_name }}
           allocated_storage: ${{ parameters.allocated_storage }} 
