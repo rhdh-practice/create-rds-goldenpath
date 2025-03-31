@@ -54,6 +54,7 @@ spec:
             catalogFilter:
               - kind: resource
                 spec.type: vpc
+          default: ""
         aws_region:
           title: AWSリージョン
           type: string
