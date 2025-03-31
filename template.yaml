@@ -17,7 +17,7 @@ spec:
         - rds_name
         - owner
       properties:
-        vpc_name:
+        rds_name:
           title: RDS名
           description: 作成するRDS名を指定してください。
           type: string
