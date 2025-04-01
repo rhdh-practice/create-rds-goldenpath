@@ -102,7 +102,7 @@ spec:
             - gp3
         multi_az:
           title: 可用性
-          type: boolean
+          type: string
           description: 可用性のオプションを選択してください。
           enum:
             - true
