@@ -235,8 +235,8 @@ spec:
           allocated_storage: ${{ parameters.allocated_storage }} 
           instance_class: ${{ parameters.instance_class }}
           storage_type: ${{ parameters.storage_type }}
-          username: ${{ parameters.username }}
-          password: ${{ parameters.password }}
+          username: ${{ secrets.username }}
+          password: ${{ secrets.password }}
           engine: ${{ parameters.engine }}
           engine_version: ${{ parameters.engine_version }}
         targetPath: ./tenant
