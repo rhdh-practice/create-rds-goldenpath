@@ -1,6 +1,4 @@
 locals {
-  aws_region = "${{ values.aws_region }}"
-
   rds = {
     identifier          = "${{ values.rds_name }}"
     db_name             = "${{ values.db_name }}"

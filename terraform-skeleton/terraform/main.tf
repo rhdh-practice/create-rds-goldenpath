@@ -21,6 +21,7 @@ resource "aws_db_instance" "${{ values.rds_name }}" {
 }
 
 resource "aws_security_group" "db" {
+  name   = "${local.rds.identifier}-sg"
   vpc_id = data.terraform_remote_state.${{ values.vpc_name }}.outputs.vpc_id
 
   tags = {

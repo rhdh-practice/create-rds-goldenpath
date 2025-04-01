@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "${{ values.aws_region }}"
+  region = "${{ "${{" }} secrets.AWS_REGION }}"
 }
 
 terraform {

@@ -56,17 +56,6 @@ spec:
             catalogFilter:
               - kind: resource
                 spec.type: vpc
-        aws_region:
-          title: AWSリージョン
-          type: string
-          description: 作成するRDSのリージョンを選択してください。
-          default: "ap-northeast-1"
-          enum:
-            - ap-northeast-1
-            - us-east-1
-          enumNames:
-            - ap-northeast-1
-            - us-east-1
         allocated_storage:
           title: ストレージのサイズ(GB)
           type: number

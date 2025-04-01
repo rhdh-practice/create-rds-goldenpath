@@ -18,7 +18,6 @@ spec:
   lifecycle: production
   parameters:
     provider: aws
-    region: ${{ values.aws_region }}
     vpc: ${{ values.vpc_name }}
     allocated_storage: ${{ values.allocated_storage }}
     storage_type: ${{ values.storage_type }}
@@ -39,7 +38,6 @@ spec:
   owner: ${{ values.owner }}
   parameters:
     provider: aws
-    region: ${{ values.aws_region }}
     vpc: ${{ values.vpc_name }}
     allocated_storage: ${{ values.allocated_storage }}
     storage_type: ${{ values.storage_type }}
