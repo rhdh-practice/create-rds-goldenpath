@@ -104,6 +104,12 @@ spec:
           title: 可用性
           type: boolean
           description: 可用性のオプションを選択してください。
+          enum:
+            - true
+            - false
+          enumNames:
+            - マルチAZ
+            - シングルAZ
           default: false
         db_name:
           title: 初期データベース名
