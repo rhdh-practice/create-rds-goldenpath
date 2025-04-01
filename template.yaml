@@ -115,7 +115,7 @@ spec:
           title: 初期データベース名
           type: string
           description: 作成する初期データベース名を指定してください。
-          default: database
+          default: sampledatabase
         username:
           title: データベースの初期ユーザー名
           type: string
