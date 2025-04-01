@@ -105,8 +105,8 @@ spec:
           type: string
           description: 可用性のオプションを選択してください。
           enum:
-            - true
-            - false
+            - "true"
+            - "false"
           enumNames:
             - マルチAZ
             - シングルAZ
