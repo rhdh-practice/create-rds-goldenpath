@@ -6,9 +6,11 @@ resource "aws_db_instance" "${{ values.rds_name }}" {
   engine              = local.rds.engine
   engine_version      = local.rds.engine_version
   instance_class      = local.rds.instance_class
+  identifier          = local.rds.identifier
   db_name             = local.rds.db_name
   username            = var.db_username
   password            = var.db_password
+  multi_az            = local.rds.multi_az
   skip_final_snapshot = local.rds.skip_final_snapshot
 
   vpc_security_group_ids = [aws_security_group.db.id]

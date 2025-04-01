@@ -19,7 +19,7 @@ spec:
       properties:
         rds_name:
           title: RDS名
-          description: 作成するRDS名を指定してください。
+          description: 作成するRDS名(DB識別子)を指定してください。
           type: string
           default: "rds-sample"
         owner:
@@ -42,6 +42,8 @@ spec:
         - storage_type
         - username
         - password
+        - multi_az
+        - db_name
         - engine
         - engine_version
       properties:
@@ -98,6 +100,16 @@ spec:
           description: ストレージタイプの情報を指定してください。
           enum:
             - gp3
+        multi_az:
+          title: 可用性
+          type: boolean
+          description: 可用性のオプションを選択してください。
+          default: false
+        db_name:
+          title: 初期データベース名
+          type: string
+          description: 作成する初期データベース名を指定してください。
+          default: database
         username:
           title: データベースの初期ユーザー名
           type: string
@@ -236,9 +248,11 @@ spec:
           vpc_name: ${{ parameters.vpc_name | parseEntityRef | pick('name') }}
           aws_region: ${{ parameters.aws_region }}
           rds_name: ${{ parameters.rds_name }}
+          db_name: ${{ parameters.db_name }}
           allocated_storage: ${{ parameters.allocated_storage }} 
           instance_class: ${{ parameters.instance_class }}
           storage_type: ${{ parameters.storage_type }}
+          multi_az: ${{ parameters.multi_az }}
           #username: ${{ secrets.username }}
           #password: ${{ secrets.password }}
           engine: ${{ parameters.engine }}
