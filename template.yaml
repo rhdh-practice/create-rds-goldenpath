@@ -110,7 +110,7 @@ spec:
           enumNames:
             - マルチAZ
             - シングルAZ
-          default: false
+          default: "false"
         db_name:
           title: 初期データベース名
           type: string
