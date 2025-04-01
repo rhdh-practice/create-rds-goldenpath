@@ -24,7 +24,7 @@ resource "aws_security_group" "db" {
   vpc_id = data.terraform_remote_state.${{ values.vpc_name }}.outputs.vpc_id
 
   tags = {
-    Name = "${local.rds.db_name}-sg"
+    Name = "${local.rds.identifier}-sg"
   }
 }
 
@@ -38,10 +38,10 @@ resource "aws_security_group_rule" "egress" {
 }
 
 resource "aws_db_subnet_group" "subnet_group" {
-  name       = "${local.rds.db_name}-subnet-group"
+  name       = "${local.rds.identifier}-subnet-group"
   subnet_ids = data.terraform_remote_state.${{ values.vpc_name }}.outputs.public_subnets
 
   tags = {
-    Name = "${local.rds.db_name}-subnet-group"
+    Name = "${local.rds.identifier}-subnet-group"
   }
 }
