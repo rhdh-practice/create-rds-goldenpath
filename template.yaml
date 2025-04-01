@@ -74,20 +74,24 @@ spec:
           title: ストレージクラス
           type: string
           description: 作成するRDSのストレージクラスを指定してください。
-          default: t3.small
+          default: db.m5d.large
           enum:
-            - t4g.small
-            - t4g.medium
-            - t4g.large
-            - t3.small
-            - t3.medium
-            - t3.large
-            - m6g.large
-            - m6g.xlarge
-            - m6g.2xlarge
-            - m5.large
-            - m5.xlarge
-            - m5.2xlarge
+            - db.m5d.large
+            - db.m5d.xlarge
+            - db.m5d.2xlarge
+            - db.m5d.4xlarge
+            - db.m6gd.large
+            - db.m6gd.xlarge
+            - db.m6gd.2xlarge
+            - db.m6gd.4xlarge
+            - db.r5d.large
+            - db.r5d.xlarge
+            - db.r5d.2xlarge
+            - db.r5d.4xlarge
+            - db.r6gd.large
+            - db.r6gd.xlarge
+            - db.r6gd.2xlarge
+            - db.r6gd.4xlarge
         storage_type:
           title: ストレージタイプ
           type: string
