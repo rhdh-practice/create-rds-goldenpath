@@ -40,6 +40,6 @@ resource "aws_db_subnet_group" "subnet_group" {
   subnet_ids = data.terraform_remote_state.${{ values.vpc_name }}.outputs.public_subnets
 
   tags = {
-    Name = "${local.rds.name}-subnet-group"
+    Name = "${local.rds.db_name}-subnet-group"
   }
 }
